@@ -4,14 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- CSS Goes Here -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-    <title>PushePoll App</title>
+
+      <!-- =======================================================
+        Theme Name: PusherPoll App
+        Github: https://github.com/Web1017/Pusher-Polling-App
+        mLab: https://mlab.com/databases/pusherpollapp
+        Author: Javid Niftaliyev
+        Date: January 2018
+    ======================================================= -->
+
+    <!-- To Run the App: Type in console: npm run dev  -->
+    <title>PusherPoll App</title>
 </head>
 <body>
     <div class="container">
             <h1>OS Vote</h1>
             <p>Vote for your favorite OS to work on</p>
+            <p>Note: The vote count is conducted in real time and saves the data using MongoDb. Once Refreshed, it will continue to show the poll results</p>
             <form id="vote-form">
                 <p>
                     <input type="radio" name="os" id="windows" value="Windows">

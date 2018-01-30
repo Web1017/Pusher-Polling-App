@@ -17,18 +17,17 @@ var pusher = new Pusher({
   
 
 router.get('/', (req, res) => {
-
-    res.send('POLL');
+    Vote.find().then(votes => res.json({success: true,
+    votes: votes}));
 });
 
 router.post('/', (req, res) => {
 
 const newVote = {
-    os: req.bosy.os,
+    os: req.body.os,
     points: 1
-        
-    
-}
+          
+};
 
 new Vote(newVote).save().then(vote => {
      
@@ -37,8 +36,7 @@ new Vote(newVote).save().then(vote => {
         os: vote.os
       });
       return res.json({success: true, message: 'Thank you for voting'});
-    });
-        
+    });     
 });
 
 module.exports = router;

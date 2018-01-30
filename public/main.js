@@ -24,13 +24,20 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
 });
 
-//Data points
+fetch('http://localhost:3000/poll')
+.then(res => res.json())
+.then(data => {
+    const votes = data.votes;
+    const totalVotes = votes.length;
+    //Count the vote points - 2 parameters taken. accumilator/current
+    const voteCounts = votes.reduce((acc, vote) => ((acc[vote.os] = (acc[vote.os] || 0) + parseInt(vote.points)), acc), {});
 
+    //Data points
  let dataPoints = [
-    {label: 'Windows', y: 0},
-    {label: 'MacOS', y: 0},
-    {label: 'Linux', y: 0},
-    {label: 'Other', y: 0},
+    {label: 'Windows', y: voteCounts.Windows},
+    {label: 'MacOS', y: voteCounts.MacOS},
+    {label: 'Linux', y: voteCounts.Linux},
+    {label: 'Other', y: voteCounts.Other},
  ];
 
  const chartContainer = document.querySelector('#chartContainer');
@@ -40,7 +47,7 @@ form.addEventListener('submit', (e) => {
         animationEnabled: true,
         theme: 'theme1',
         title: {
-            text: 'OS Results'
+            text: `Total Votes ${totalVotes}`
         },
         data: [
             {
@@ -74,3 +81,6 @@ form.addEventListener('submit', (e) => {
         chart.render();
       });
  }
+
+});
+
